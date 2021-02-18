@@ -53,6 +53,10 @@ class ShibbolethRemoteUserBackend(RemoteUserBackend):
             local_ccnet_users = []
 
         if not local_ccnet_users:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error('in not local_ccnet_users')
+            logger.error(username)
             if self.create_unknown_user:
                 user = User.objects.create_user(
                     email=username, is_active=self.activate_after_creation)

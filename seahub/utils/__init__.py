@@ -1292,6 +1292,7 @@ def clear_token(username):
     clear web api and repo sync token
     when delete/inactive an user
     '''
+    logger.error('in clear_token')
     Token.objects.filter(user = username).delete()
     TokenV2.objects.filter(user = username).delete()
     seafile_api.delete_repo_tokens_by_email(username)

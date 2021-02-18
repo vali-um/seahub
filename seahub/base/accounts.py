@@ -55,6 +55,7 @@ class UserManager(object):
         user = User(email=email)
         user.is_staff = is_staff
         user.is_active = is_active
+        logger.error('in create_user')
         user.set_password(password)
         user.save()
 
@@ -336,6 +337,7 @@ class User(object):
                 # clear web api and repo sync token
                 # when inactive an user
                 try:
+                    logger.error('in save')
                     clear_token(self.username)
                 except Exception as e:
                     logger.error(e)
@@ -400,6 +402,7 @@ class User(object):
         # clear web api and repo sync token
         # when delete user
         try:
+            logger.error('in delete')
             clear_token(self.username)
         except Exception as e:
             logger.error(e)
@@ -438,6 +441,7 @@ class User(object):
         # clear web api and repo sync token
         # when user password change
         try:
+            logger.error('in set_password')
             clear_token(self.username)
         except Exception as e:
             logger.error(e)
